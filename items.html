@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Liste des Items</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h2>Liste des Items</h2>
+      <div class="form-row mt-3">
+        <div class="col-md-3">
+          <label for="nameFilter">Filtrer par Nom d'athlète:</label>
+          <input
+            type="text"
+            id="nameFilter"
+            onkeyup="filterItems()"
+            class="form-control"
+            placeholder="Entrez le nom d'athlète"
+          />
+        </div>
+        <div class="col-md-3">
+          <label for="countryFilter">Filtrer par Pays:</label>
+          <input
+            type="text"
+            id="countryFilter"
+            onkeyup="filterItems()"
+            class="form-control"
+            placeholder="Entrez le pays"
+          />
+        </div>
+        <div class="col-md-3">
+          <label for="medalFilter">Filtrer par Médaille:</label>
+          <input
+            type="text"
+            id="medalFilter"
+            onkeyup="filterItems()"
+            class="form-control"
+            placeholder="Entrez la médaille"
+          />
+        </div>
+        <div class="col-md-3">
+          <label for="resultFilter">Filtrer par Résultat:</label>
+          <input
+            type="text"
+            id="resultFilter"
+            onkeyup="filterItems()"
+            class="form-control"
+            placeholder="Entrez le résultat"
+          />
+        </div>
+      </div>
+      <ul id="itemsList" class="list-group mt-3"></ul>
+    </div>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <!-- Custom JavaScript -->
+    <script>
+      // Fonction pour récupérer les données de l'API
+      function getData() {
+        // Remplacez l'URL de l'API par votre propre URL
+        const apiUrl = "http://localhost/omeka/api/items";
+
+        // Utilisez fetch pour récupérer les données JSON
+        fetch(apiUrl)
+          .then((response) => response.json())
+          .then((data) => showItems(data))
+          .catch((error) =>
+            console.error(
+              "Erreur lors de la récupération des données : ",
+              error
+            )
+          );
+      }
+
+      // Fonction pour afficher la liste des items
+      function showItems(items) {
+        const itemsList = document.getElementById("itemsList");
+
+        // Parcourez chaque item et affichez les informations requises
+        items.forEach((item) => {
+          const listItem = document.createElement("li");
+          listItem.className = "list-group-item";
+          listItem.innerHTML = `
+          <strong>ID:</strong> ${item["@id"]}<br>
+          <strong>Nom de l'athlète:</strong> ${item["olympic:hasName"][0]["@value"]}<br>
+          <strong>Pays de l'athlète:</strong> ${item["olympic:hasCountry"][0]["@value"]}<br>
+          <strong>Médaille remportée:</strong> ${item["olympic:hasMedal"][0]["@value"]}<br>
+          <strong>Résultat de l'athlète:</strong> ${item["olympic:hasResult"][0]["@value"]}<br>
+        `;
+          itemsList.appendChild(listItem);
+        });
+      }
+
+      // Fonction pour filtrer la liste des items
+      function filterItems() {
+        const nameFilter = document
+          .getElementById("nameFilter")
+          .value.toUpperCase();
+        const countryFilter = document
+          .getElementById("countryFilter")
+          .value.toUpperCase();
+        const medalFilter = document
+          .getElementById("medalFilter")
+          .value.toUpperCase();
+        const resultFilter = document
+          .getElementById("resultFilter")
+          .value.toUpperCase();
+
+        const itemsList = document.getElementById("itemsList");
+        const items = itemsList.getElementsByTagName("li");
+
+        // Parcourez chaque item et masquez ceux qui ne correspondent pas aux filtres
+        for (let i = 0; i < items.length; i++) {
+          const name = items[i].innerText.toUpperCase();
+          const country = items[i].innerText.toUpperCase();
+          const medal = items[i].innerText.toUpperCase();
+          const result = items[i].innerText.toUpperCase();
+
+          const nameMatch = name.includes(nameFilter) || nameFilter === "";
+          const countryMatch =
+            country.includes(countryFilter) || countryFilter === "";
+          const medalMatch = medal.includes(medalFilter) || medalFilter === "";
+          const resultMatch =
+            result.includes(resultFilter) || resultFilter === "";
+
+          if (nameMatch && countryMatch && medalMatch && resultMatch) {
+            items[i].style.display = "block";
+          } else {
+            items[i].style.display = "none";
+          }
+        }
+      }
+
+      // Appelez la fonction getData lors du chargement de la page
+      window.onload = getData;
+    </script>
+  </body>
+</html>
