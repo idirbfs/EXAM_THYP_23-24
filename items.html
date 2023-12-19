@@ -7,7 +7,6 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <title>Liste des Items</title>
-    <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -66,15 +65,10 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!-- Custom JavaScript -->
-    <!-- Custom JavaScript -->
     <script>
-      // Fonction pour récupérer les données de l'API
       function getData() {
-        // Remplacez l'URL de l'API par votre propre URL
         const apiUrl = "http://localhost/omeka/api/items";
 
-        // Utilisez fetch pour récupérer les données JSON
         fetch(apiUrl)
           .then((response) => response.json())
           .then((data) => showItems(data))
@@ -86,11 +80,9 @@
           );
       }
 
-      // Fonction pour afficher la liste des items
       function showItems(items) {
         const itemsList = document.getElementById("itemsList");
 
-        // Parcourez chaque item et affichez les informations requises
         items.forEach((item) => {
           const listItem = document.createElement("li");
           listItem.className = "list-group-item";
@@ -105,7 +97,6 @@
         });
       }
 
-      // Fonction pour filtrer la liste des items
       function filterItems() {
         const nameFilter = document
           .getElementById("nameFilter")
@@ -123,7 +114,6 @@
         const itemsList = document.getElementById("itemsList");
         const items = itemsList.getElementsByTagName("li");
 
-        // Parcourez chaque item et masquez ceux qui ne correspondent pas aux filtres
         for (let i = 0; i < items.length; i++) {
           const name = items[i].innerText.toUpperCase();
           const country = items[i].innerText.toUpperCase();
@@ -145,7 +135,6 @@
         }
       }
 
-      // Appelez la fonction getData lors du chargement de la page
       window.onload = getData;
     </script>
   </body>
