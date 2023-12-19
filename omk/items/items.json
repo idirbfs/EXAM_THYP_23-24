@@ -1,9 +1,53 @@
 [
   {
     "@context": "http://localhost/omeka/api-context",
-    "@id": "http://localhost/omeka/api/items/2",
+    "@id": "http://localhost/omeka/api/items/4",
     "@type": ["o:Item", "olympic:Athlete"],
-    "o:id": 2,
+    "o:id": 4,
+    "o:is_public": true,
+    "o:owner": { "@id": "http://localhost/omeka/api/users/1", "o:id": 1 },
+    "o:resource_class": {
+      "@id": "http://localhost/omeka/api/resource_classes/106",
+      "o:id": 106
+    },
+    "o:resource_template": null,
+    "o:thumbnail": null,
+    "o:title": "athlete",
+    "thumbnail_display_urls": {
+      "large": "http://localhost/omeka/files/large/99f97f28262bedb7df08dcead8f4a25bfab603f6.jpg",
+      "medium": "http://localhost/omeka/files/medium/99f97f28262bedb7df08dcead8f4a25bfab603f6.jpg",
+      "square": "http://localhost/omeka/files/square/99f97f28262bedb7df08dcead8f4a25bfab603f6.jpg"
+    },
+    "o:created": {
+      "@value": "2023-12-19T10:32:44+00:00",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "o:modified": {
+      "@value": "2023-12-19T10:36:11+00:00",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "o:primary_media": {
+      "@id": "http://localhost/omeka/api/media/5",
+      "o:id": 5
+    },
+    "o:media": [{ "@id": "http://localhost/omeka/api/media/5", "o:id": 5 }],
+    "o:item_set": [],
+    "o:site": [],
+    "dcterms:title": [
+      {
+        "type": "literal",
+        "property_id": 1,
+        "property_label": "Title",
+        "is_public": true,
+        "@value": "athlete"
+      }
+    ]
+  },
+  {
+    "@context": "http://localhost/omeka/api-context",
+    "@id": "http://localhost/omeka/api/items/8",
+    "@type": ["o:Item", "olympic:Athlete"],
+    "o:id": 8,
     "o:is_public": true,
     "o:owner": { "@id": "http://localhost/omeka/api/users/1", "o:id": 1 },
     "o:resource_class": {
@@ -16,17 +60,24 @@
     },
     "o:thumbnail": null,
     "o:title": null,
-    "thumbnail_display_urls": { "large": null, "medium": null, "square": null },
+    "thumbnail_display_urls": {
+      "large": "http://localhost/omeka/files/large/45a455a3baf2f9a6c7a6c8e34379f9e305b80bcc.jpg",
+      "medium": "http://localhost/omeka/files/medium/45a455a3baf2f9a6c7a6c8e34379f9e305b80bcc.jpg",
+      "square": "http://localhost/omeka/files/square/45a455a3baf2f9a6c7a6c8e34379f9e305b80bcc.jpg"
+    },
     "o:created": {
-      "@value": "2023-12-19T09:48:57+00:00",
+      "@value": "2023-12-19T10:34:44+00:00",
       "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
     },
     "o:modified": {
-      "@value": "2023-12-19T09:48:57+00:00",
+      "@value": "2023-12-19T10:36:29+00:00",
       "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
     },
-    "o:primary_media": null,
-    "o:media": [],
+    "o:primary_media": {
+      "@id": "http://localhost/omeka/api/media/9",
+      "o:id": 9
+    },
+    "o:media": [{ "@id": "http://localhost/omeka/api/media/9", "o:id": 9 }],
     "o:item_set": [],
     "o:site": [],
     "olympic:hasName": [
@@ -35,7 +86,7 @@
         "property_id": 185,
         "property_label": "hasName",
         "is_public": true,
-        "@value": "Caeleb Dressel"
+        "@value": "athlete 2"
       }
     ],
     "olympic:hasCountry": [
@@ -62,74 +113,7 @@
         "property_id": 189,
         "property_label": "hasResult",
         "is_public": true,
-        "@value": "Record du monde"
-      }
-    ]
-  },
-  {
-    "@context": "http://localhost/omeka/api-context",
-    "@id": "http://localhost/omeka/api/items/3",
-    "@type": ["o:Item", "olympic:Athlete"],
-    "o:id": 3,
-    "o:is_public": true,
-    "o:owner": { "@id": "http://localhost/omeka/api/users/1", "o:id": 1 },
-    "o:resource_class": {
-      "@id": "http://localhost/omeka/api/resource_classes/106",
-      "o:id": 106
-    },
-    "o:resource_template": {
-      "@id": "http://localhost/omeka/api/resource_templates/3",
-      "o:id": 3
-    },
-    "o:thumbnail": null,
-    "o:title": null,
-    "thumbnail_display_urls": { "large": null, "medium": null, "square": null },
-    "o:created": {
-      "@value": "2023-12-19T10:24:23+00:00",
-      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
-    },
-    "o:modified": {
-      "@value": "2023-12-19T10:24:59+00:00",
-      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
-    },
-    "o:primary_media": null,
-    "o:media": [],
-    "o:item_set": [],
-    "o:site": [],
-    "olympic:hasName": [
-      {
-        "type": "literal",
-        "property_id": 185,
-        "property_label": "hasName",
-        "is_public": true,
-        "@value": "JOhn Doe"
-      }
-    ],
-    "olympic:hasCountry": [
-      {
-        "type": "literal",
-        "property_id": 186,
-        "property_label": "hasCountry",
-        "is_public": true,
-        "@value": "FR"
-      }
-    ],
-    "olympic:hasMedal": [
-      {
-        "type": "literal",
-        "property_id": 188,
-        "property_label": "hasMedal",
-        "is_public": true,
-        "@value": "Bronze"
-      }
-    ],
-    "olympic:hasResult": [
-      {
-        "type": "literal",
-        "property_id": 189,
-        "property_label": "hasResult",
-        "is_public": true,
-        "@value": "World record"
+        "@value": "USA record"
       }
     ]
   }

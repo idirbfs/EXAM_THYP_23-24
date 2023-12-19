@@ -57,10 +57,9 @@
           />
         </div>
       </div>
-      <ul id="itemsList" class="list-group mt-3"></ul>
+      <ul id="itemsList" class="card-deck mt-3"></ul>
     </div>
 
-    <!-- Bootstrap JS and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -82,18 +81,58 @@
 
       function showItems(items) {
         const itemsList = document.getElementById("itemsList");
+        itemsList.innerHTML = ""; // Clear previous items
 
-        items.forEach((item) => {
-          const listItem = document.createElement("li");
-          listItem.className = "list-group-item";
-          listItem.innerHTML = `
-          <strong>ID:</strong> ${item["@id"]}<br>
-          <strong>Nom de l'athlète:</strong> ${item["olympic:hasName"][0]["@value"]}<br>
-          <strong>Pays de l'athlète:</strong> ${item["olympic:hasCountry"][0]["@value"]}<br>
-          <strong>Médaille remportée:</strong> ${item["olympic:hasMedal"][0]["@value"]}<br>
-          <strong>Résultat de l'athlète:</strong> ${item["olympic:hasResult"][0]["@value"]}<br>
-        `;
-          itemsList.appendChild(listItem);
+        items.forEach((item, index) => {
+          // Create a card for each item
+          const card = document.createElement("div");
+          card.className = "card";
+          card.style.width = "18rem";
+
+          const cardBody = document.createElement("div");
+          cardBody.className = "card-body";
+
+          const hasName =
+            item["olympic:hasName"] && item["olympic:hasName"][0]
+              ? item["olympic:hasName"][0]["@value"]
+              : "N/A";
+
+          const thumbnailUrl = item["thumbnail_display_urls"]
+            ? item["thumbnail_display_urls"]["medium"] // Change to medium size
+            : "";
+
+          cardBody.innerHTML = `
+      <h5 class="card-title">${hasName}</h5>
+      <p class="card-text">
+        <strong>ID:</strong> ${item["@id"]}<br>
+        <strong>Pays de l'athlète:</strong> ${
+          item["olympic:hasCountry"] && item["olympic:hasCountry"][0]
+            ? item["olympic:hasCountry"][0]["@value"]
+            : "N/A"
+        }<br>
+        <strong>Médaille remportée:</strong> ${
+          item["olympic:hasMedal"] && item["olympic:hasMedal"][0]
+            ? item["olympic:hasMedal"][0]["@value"]
+            : "N/A"
+        }<br>
+        <strong>Résultat de l'athlète:</strong> ${
+          item["olympic:hasResult"] && item["olympic:hasResult"][0]
+            ? item["olympic:hasResult"][0]["@value"]
+            : "N/A"
+        }<br>
+      </p>
+      <img src="${thumbnailUrl}" class="card-img-top" alt="Thumbnail">
+    `;
+
+          card.appendChild(cardBody);
+          itemsList.appendChild(card);
+
+          if ((index + 1) % 3 === 0) {
+            const newCardDeck = document.createElement("div");
+            newCardDeck.className = "card-deck mt-3";
+            newCardDeck.id = `itemsList${(index + 1) / 3}`;
+            itemsList.appendChild(newCardDeck);
+          }
         });
       }
 
