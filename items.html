@@ -81,10 +81,9 @@
 
       function showItems(items) {
         const itemsList = document.getElementById("itemsList");
-        itemsList.innerHTML = ""; // Clear previous items
+        itemsList.innerHTML = "";
 
         items.forEach((item, index) => {
-          // Create a card for each item
           const card = document.createElement("div");
           card.className = "card";
           card.style.width = "18rem";
@@ -98,7 +97,7 @@
               : "N/A";
 
           const thumbnailUrl = item["thumbnail_display_urls"]
-            ? item["thumbnail_display_urls"]["medium"] // Change to medium size
+            ? item["thumbnail_display_urls"]["medium"]
             : "";
 
           cardBody.innerHTML = `
