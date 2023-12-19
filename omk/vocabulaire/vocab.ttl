@@ -1,0 +1,25 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix olympic: <http://example.org/olympic#> .
+
+olympic:Athlete rdf:type rdfs:Class .
+olympic:Sport rdf:type rdfs:Class .
+olympic:Result rdf:type rdfs:Class .
+olympic:Medal rdf:type rdfs:Class .
+
+olympic:hasName rdf:type rdf:Property .
+olympic:hasCountry rdf:type rdf:Property .
+olympic:participatesIn rdf:type rdf:Property .
+olympic:hasMedal rdf:type rdf:Property .
+olympic:hasResult rdf:type rdf:Property .
+
+rdf:type rdfs:subPropertyOf olympic:Result .
+
+olympic:GoldMedal rdf:type olympic:Medal ;
+                 olympic:hasMedal "Gold" .
+
+olympic:SilverMedal rdf:type olympic:Medal ;
+                   olympic:hasMedal "Silver" .
+
+olympic:BronzeMedal rdf:type olympic:Medal ;
+                   olympic:hasMedal "Bronze" .
